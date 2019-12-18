@@ -1,0 +1,154 @@
+/**************************************CSS necessities******************************/
+
+/*so padding etc does not effect the width of the element thoughout then entire page*/
+html {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--dark);
+}
+
+/* shadow-box */
+:root {
+  --shadow: 0 1px 5px rgba(104, 104, 104, 0.8);
+}
+
+/*when you want the imgs to stay within their containers*/
+img {
+  max-width: 100%;
+}
+
+/* If you don't want the image zoomed in container */
+.showcase {
+  background-size: cover;
+  background-position: center;
+}
+
+/*If you want a hover state*/
+.main-nav a:hover {
+  background: var(--dark);
+  color: var(--light);
+}
+
+/**************************************CSS Grids******************************/
+/*CSS Grid*/
+.wrapper {
+  display: grid;
+  grid-gap: 20px;
+}
+
+.main-nav ul {
+  display: grid;
+  grid-gap: 20px;
+  padding: 0; /*By default uls have padding*/
+  list-style: none;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.main-nav a {
+  background: var(--primary);
+  display: block;
+  text-decoration: none;
+  padding: 0.8rem;
+  text-align: center;
+  color: var(--dark);
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  box-shadow: var(--shadow);
+}
+
+/*Other grid formats (using grid-template-areas)*/
+/* Top Container pt.1 */
+.top-container {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-areas:
+    "showcase showcase top-box-a"
+    "showcase showcase top-box-b";
+}
+/* don't forget to assign your grid area */
+/* top container assigning grid area pt.2 */
+.showcase {
+  grid-area: showcase;
+  min-height: 400px;
+}
+
+.top-box-a {
+  grid-area: top-box-a;
+}
+
+.top-box-b {
+  grid-area: top-box-b;
+}
+
+/* To just split in half */
+.info {
+  display: grid;
+  grid-gap: 30px;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* build a little box of content with a grid */
+/* top box */
+.top-box {
+  background: var(--primary);
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+}
+
+/* Making a column of four more responsive so you don't have to define in media queries. Also leaves room to add more boxes */
+.boxes {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+/**************************************CSS Flexbox******************************/
+
+/* using flex-box (which you can use to align things inside of grids) */
+.showcase {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+}
+
+/**************************************Media Queries******************************/
+/* 700px */
+@media (max-width: 700px) {
+  .top-container {
+    grid-template-areas:
+      "showcase showcase"
+      "top-box-a top-box-b";
+  }
+
+  .showcase h1 {
+    font-size: 2.5rem;
+  }
+
+  .main-nav ul {
+    grid-template-columns: 1fr;
+  }
+
+  .info {
+    grid-template-columns: 1fr;
+  }
+
+  .info .btn {
+    display: block;
+    text-align: center;
+    margin: auto;
+  }
+}
+
+/* 500px */
+@media (max-width: 500px) {
+  .top-container {
+    grid-template-areas:
+      "showcase"
+      "top-box-a"
+      "top-box-b";
+  }
+}
